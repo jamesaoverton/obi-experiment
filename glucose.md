@@ -4,7 +4,7 @@ This document shows how we can represent a single blood serum glucose assay usin
 
 ![Measuring glucose concentration in blood](glucose.jpg)
 
-The list of ontology terms used in is [`glucose.tsv`](glucose.tsv). An [RDF Turtle](http://www.w3.org/TeamSubmission/turtle/) representation is in [`glucose.ttl`](glucose.ttl), and can viewed in [Protégé](http://protege.stanford.edu/). See the [issues list](issues) for problems with this representation.
+The list of ontology terms used in is [`glucose.tsv`](glucose.tsv). An [RDF Turtle](http://www.w3.org/TeamSubmission/turtle/) representation is in [`glucose.ttl`](glucose.ttl), and can viewed in [Protégé](http://protege.stanford.edu/). See the [issues list](https://github.com/jamesaoverton/obi-experiment/issues) for problems with this representation.
 
 First we have the material entities that persist through the whole measurement.
 
