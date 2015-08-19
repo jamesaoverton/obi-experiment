@@ -1,0 +1,54 @@
+#!/usr/env python
+
+import sys, fileinput, csv, re
+
+def uri(x):
+  return 'x:' + re.sub(r'\W+', '-', x)
+
+def write_stanza(subject, stanza):
+  sys.stdout.write(subject + '\n  ' + ' ;\n  '.join(stanza) + ' .\n\n')
+
+lookup = dict()
+with open(sys.argv[1], 'rb') as tsvfile:
+  spamreader = csv.reader(tsvfile, delimiter='\t')
+  for row in spamreader:
+    lookup[row[1]] = [row[0], row[2]]
+
+subject = None
+stanza = []
+with open(sys.argv[2], 'rb') as inp:
+  for line in inp.readlines():
+    if not line.startswith("  "):
+      if subject:
+        write_stanza(subject, stanza)
+        stanza = []
+      subject = line.strip()
+      if subject in lookup:
+        subject = lookup[subject][0]
+      else:
+        stanza.append('rdfs:label "' + subject + '"')
+        subject = uri(subject)
+    else:
+      predType = None
+      pred, obj = line.strip().split(': ')
+      if pred in lookup:
+        predType = lookup[pred][1]
+      else:
+        sys.stderr.write('Could not find predicate ' + pred)
+      if not predType in ['ObjectProperty', 'AnnotationProperty', 'DataProperty']:
+        sys.stderr.write('Invalid predicate type ' + str(predType)
+                         + ' for ' + pred)
+      output = lookup[pred][0] + ' '
+      if predType == "ObjectProperty":
+        if obj in lookup:
+          output = output + lookup[obj][0]
+        else:
+          output = output + uri(obj)
+      elif predType in ['AnnotationProperty', 'DataProperty']:
+        if obj.startswith('"'):
+          output = output + obj
+        else:
+          output = output + '"' + obj + '"'
+      stanza.append(output)
+  if subject:
+    write_stanza(subject, stanza)

@@ -1,0 +1,5 @@
+.DS_Store
+.vagrant/
+catalog-v001.xml
+glucose.txt
+glucose-*.txt

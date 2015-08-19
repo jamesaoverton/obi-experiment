@@ -1,0 +1,98 @@
+@prefix rdf:       <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:      <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:       <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:       <http://www.w3.org/2001/XMLSchema#> .
+@prefix obo:       <http://purl.obolibrary.org/obo/> .
+@prefix BFO:       <http://purl.obolibrary.org/obo/BFO_> .
+@prefix CHEBI:     <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix IAO:       <http://purl.obolibrary.org/obo/IAO_> .
+@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+@prefix OBI:       <http://purl.obolibrary.org/obo/OBI_> .
+@prefix RO:        <http://purl.obolibrary.org/obo/RO_> .
+@prefix x: <https://github.com/jamesaoverton/obi-experiment/raw/master/glucose.ttl#> .
+
+<https://github.com/jamesaoverton/obi-experiment/raw/master/glucose.ttl>
+  rdf:type owl:Ontology .
+
+owl:Ontology owl:imports obo:obi.owl .
+
+x:mouse-1
+  rdfs:label "mouse 1" ;
+  rdf:type NCBITaxon:10090 .
+
+x:glucose-molecules-1
+  rdfs:label "glucose molecules 1" ;
+  rdf:type CHEBI:17234 ;
+  BFO:0000050 x:blood-serum-specimen-1 .
+
+x:syringe-1
+  rdfs:label "syringe 1" ;
+  rdf:type OBI:0000422 .
+
+x:test-tube-1
+  rdfs:label "test tube 1" ;
+  rdf:type OBI:0000422 .
+
+x:glucometer-1
+  rdfs:label "glucometer 1" ;
+  rdf:type OBI:0000795 .
+
+x:glucometer-measure-function-1
+  rdfs:label "glucometer measure function 1" ;
+  rdf:type OBI:0000453 ;
+  RO:0000052 x:glucometer-1 ;
+  BFO:0000054 x:analyte-assay-1 .
+
+x:collection-process-1
+  rdfs:label "collection process 1" ;
+  rdf:type OBI:0600005 ;
+  OBI:0000293 x:mouse-1 ;
+  OBI:0000293 x:syringe-1 ;
+  OBI:0000293 x:test-tube-1 ;
+  OBI:0000299 x:blood-serum-specimen-1 .
+
+x:blood-serum-specimen-1
+  rdfs:label "blood serum specimen 1" ;
+  rdf:type OBI:0100017 ;
+  RO:0001018 x:test-tube-1 .
+
+x:specimen-role-1
+  rdfs:label "specimen role 1" ;
+  RO:0000052 x:mouse-1 ;
+  BFO:0000054 x:collection-process-1 .
+
+x:specimen-role-2
+  rdfs:label "specimen role 2" ;
+  RO:0000052 x:blood-serum-specimen-1 ;
+  BFO:0000054 x:collection-process-1 .
+
+x:analyte-assay-1
+  rdfs:label "analyte assay 1" ;
+  rdf:type OBI:0000443 ;
+  OBI:0000293 x:blood-serum-specimen-1 ;
+  OBI:0000293 x:glucometer-1 ;
+  OBI:0000299 x:measurement-datum-1 .
+
+x:evaluant-role-1
+  rdfs:label "evaluant role 1" ;
+  rdf:type OBI:0000067 ;
+  RO:0000052 x:blood-serum-specimen-1 ;
+  BFO:0000054 x:analyte-assay-1 .
+
+x:analyte-role-1
+  rdfs:label "analyte role 1" ;
+  rdf:type OBI:0000275 ;
+  RO:0000052 x:glucose-molecules-1 ;
+  BFO:0000054 x:analyte-assay-1 .
+
+x:measurement-datum-1
+  rdfs:label "measurement datum 1" ;
+  rdf:type IAO:0000109 ;
+  OBI:0001938 x:value-specification-1 .
+
+x:value-specification-1
+  rdfs:label "value specification 1" ;
+  rdf:type OBI:0001931 ;
+  OBI:0001937 "100"^^xsd:real ;
+  IAO:0000039 x:mg-dl .
+

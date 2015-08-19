@@ -1,0 +1,23 @@
+NCBITaxon:10090	Mus musculus	Class
+OBI:0000443	analye assay	Class
+OBI:0000275	analyte role	Class
+OBI:0100017	blood serum specimen	Class
+OBI:0600005	collecting specimen from organism	Class
+RO:0001018	contained in	ObjectProperty
+OBI:0000067	evaluant role	Class
+OBI:0000795	glucometer	Class
+CHEBI:17234	glucose	Class
+IAO:0000039	has measurement unit label	ObjectProperty
+OBI:0001937	has specified value	DataProperty
+OBI:0000293	has specified input	ObjectProperty
+OBI:0000299	has specified output	ObjectProperty
+OBI:0001938	has value specification	ObjectProperty
+RO:0000052	inheres in	ObjectProperty
+OBI:0000453	measure function	Class
+IAO:0000109	measurement datum	Class
+BFO:0000050	part of	ObjectProperty
+BFO:0000054	realized in	ObjectProperty
+OBI:0001931	scalar value specification	Class
+OBI:0000422	syringe	Class
+OBI:0000422	test tube	Class
+rdf:type	type	ObjectProperty
