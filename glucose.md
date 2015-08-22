@@ -44,7 +44,7 @@ Before the assay can be performed, a blood specimen must be collected from the s
 
     blood specimen 1
       type: blood specimen
-      contained in: test tube 1
+      located in: test tube 1
 
 The subject mouse and the blood specimen each have a specimen role that is realized in the collection process.
 

@@ -3,7 +3,7 @@ OBI:0000443	analye assay	Class
 OBI:0000275	analyte role	Class
 OBI:0000655	blood specimen	Class
 OBI:0600005	collecting specimen from organism	Class
-RO:0001018	contained in	ObjectProperty
+RO:0001025	located in	ObjectProperty
 OBI:0000067	evaluant role	Class
 OBI:0000795	glucometer	Class
 CHEBI:17234	glucose	Class
