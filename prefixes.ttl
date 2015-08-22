@@ -9,6 +9,7 @@
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix OBI:       <http://purl.obolibrary.org/obo/OBI_> .
 @prefix RO:        <http://purl.obolibrary.org/obo/RO_> .
+@prefix UO:        <http://purl.obolibrary.org/obo/UO_> .
 @prefix x: <https://github.com/jamesaoverton/obi-experiment/raw/master/glucose.ttl#> .
 
 <https://github.com/jamesaoverton/obi-experiment/raw/master/glucose.ttl>

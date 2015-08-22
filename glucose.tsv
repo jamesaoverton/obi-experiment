@@ -15,6 +15,7 @@ OBI:0001938	has value specification	ObjectProperty
 RO:0000052	inheres in	ObjectProperty
 OBI:0000453	measure function	Class
 IAO:0000109	measurement datum	Class
+UO:0000176	milligram per milliliter	Individual
 BFO:0000050	part of	ObjectProperty
 BFO:0000054	realized in	ObjectProperty
 OBI:0001931	scalar value specification	Class

@@ -83,5 +83,5 @@ The measurement datum is linked to a scalar value specification, with the value 
     value specification 1
       type: scalar value specification
       has specified value: "100"^^xsd:real
-      has measurement unit label: mg/dl
+      has measurement unit label: milligram per milliliter
 
