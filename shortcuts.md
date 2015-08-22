@@ -300,7 +300,7 @@ Expanding 'has measured value' seems similar...
 
 ### Expand 'has measured unit'
 
-Now we run into trouble. If an assay 'has measured unit' then its output is a measurement datum with a scalar value specification. If we adopt the same approach as in the previous example and expand both relations in parallel, then we fail to assert that it is the **same** measurement datum and value specification.
+Now we run into some trouble. If an assay 'has measured unit' then its output is a measurement datum with a scalar value specification. If we adopt the same approach as in the previous example and expand both relations in parallel, then the `_:measurement-datum` [blank node](https://en.wikipedia.org/wiki/Blank_node)s will **not** be identical. This is because RDF blank node identity is local to a graph, and does not extend between graphs -- in this case each SPARQL query is a different graph. So we will end up asserting that the one assay has **two different** output measurement datum nodes, one from the 'has measured value' expansion and another from the 'has measured unit' expansion. This is still technically correct, since RDF allows that the two nodes **could** be identical, but misleading because we do not assert the identity. It would make subsequent SPARQL queries more complex.
 
     INSERT {
       ?assay
@@ -320,5 +320,5 @@ Now we run into trouble. If an assay 'has measured unit' then its output is a me
         has measured unit: ?unit
     }
 
-We can work around the problem in this specific case, but it raises a general problem with interactions between the expansions and contractions.
+We can work around the problem in this specific case, either with a combined query or by blocking the 'has measured value' expansion from matching the scalar value case. But it raises a general problem with interactions between the expansions and contractions. Interactions always add complexity.
 
