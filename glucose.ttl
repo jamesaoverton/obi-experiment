@@ -23,7 +23,7 @@ x:mouse-1
 x:glucose-molecules-1
   rdfs:label "glucose molecules 1" ;
   rdf:type CHEBI:17234 ;
-  BFO:0000050 x:blood-serum-specimen-1 .
+  BFO:0000050 x:blood-specimen-1 .
 
 x:syringe-1
   rdfs:label "syringe 1" ;
@@ -49,11 +49,11 @@ x:collection-process-1
   OBI:0000293 x:mouse-1 ;
   OBI:0000293 x:syringe-1 ;
   OBI:0000293 x:test-tube-1 ;
-  OBI:0000299 x:blood-serum-specimen-1 .
+  OBI:0000299 x:blood-specimen-1 .
 
-x:blood-serum-specimen-1
-  rdfs:label "blood serum specimen 1" ;
-  rdf:type OBI:0100017 ;
+x:blood-specimen-1
+  rdfs:label "blood specimen 1" ;
+  rdf:type OBI:0000655 ;
   RO:0001018 x:test-tube-1 .
 
 x:specimen-role-1
@@ -63,20 +63,20 @@ x:specimen-role-1
 
 x:specimen-role-2
   rdfs:label "specimen role 2" ;
-  RO:0000052 x:blood-serum-specimen-1 ;
+  RO:0000052 x:blood-specimen-1 ;
   BFO:0000054 x:collection-process-1 .
 
 x:analyte-assay-1
   rdfs:label "analyte assay 1" ;
   rdf:type OBI:0000443 ;
-  OBI:0000293 x:blood-serum-specimen-1 ;
+  OBI:0000293 x:blood-specimen-1 ;
   OBI:0000293 x:glucometer-1 ;
   OBI:0000299 x:measurement-datum-1 .
 
 x:evaluant-role-1
   rdfs:label "evaluant role 1" ;
   rdf:type OBI:0000067 ;
-  RO:0000052 x:blood-serum-specimen-1 ;
+  RO:0000052 x:blood-specimen-1 ;
   BFO:0000054 x:analyte-assay-1 .
 
 x:analyte-role-1

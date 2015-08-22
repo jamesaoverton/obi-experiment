@@ -15,7 +15,7 @@ First we have the material entities that persist through the whole measurement.
 
     glucose molecules 1
       type: glucose
-      part of: blood serum specimen 1
+      part of: blood specimen 1
 
     syringe 1
       type: syringe
@@ -33,40 +33,40 @@ The glucometer has a measurement function, which we can also capture.
       inheres in: glucometer 1
       realized in: analyte assay 1
 
-Before the assay can be performed, a blood serum specimen must be collected from the subject.
+Before the assay can be performed, a blood specimen must be collected from the subject.
 
     collection process 1
       type: collecting specimen from organism
       has specified input: mouse 1
       has specified input: syringe 1
       has specified input: test tube 1
-      has specified output: blood serum specimen 1
+      has specified output: blood specimen 1
 
-    blood serum specimen 1
-      type: blood serum specimen
+    blood specimen 1
+      type: blood specimen
       contained in: test tube 1
 
-The subject mouse and the blood serum specimen each have a specimen role that is realized in the collection process.
+The subject mouse and the blood specimen each have a specimen role that is realized in the collection process.
 
     specimen role 1
       inheres in: mouse 1
       realized in: collection process 1
 
     specimen role 2
-      inheres in: blood serum specimen 1
+      inheres in: blood specimen 1
       realized in: collection process 1
 
-The assay process takes the blood serum specimen as input and creates a measurement datum as output.
+The assay process takes the blood specimen as input and creates a measurement datum as output.
 
     analyte assay 1
       type: analye assay
-      has specified input: blood serum specimen 1
+      has specified input: blood specimen 1
       has specified input: glucometer 1
       has specified output: measurement datum 1
 
     evaluant role 1
       type: evaluant role
-      inheres in: blood serum specimen 1
+      inheres in: blood specimen 1
       realized in: analyte assay 1
 
     analyte role 1
