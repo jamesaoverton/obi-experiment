@@ -3,6 +3,7 @@
 This repository contains experiments using the [Ontology for Biomedical Investigations](http://obi-ontology.org) (OBI) to model scientific experiments.
 
 - [Glucose Measurement](glucose.md)
+- [Shortcuts](shortcuts.md)
 
 
 ## Setting Up
