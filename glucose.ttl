@@ -59,11 +59,7 @@ x:blood-specimen-1
 
 x:specimen-role-1
   rdfs:label "specimen role 1" ;
-  RO:0000052 x:mouse-1 ;
-  BFO:0000054 x:collection-process-1 .
-
-x:specimen-role-2
-  rdfs:label "specimen role 2" ;
+  rdf:type OBI:0000112 ;
   RO:0000052 x:blood-specimen-1 ;
   BFO:0000054 x:collection-process-1 .
 

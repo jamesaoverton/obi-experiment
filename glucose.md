@@ -49,10 +49,7 @@ Before the assay can be performed, a blood specimen must be collected from the s
 The subject mouse and the blood specimen each have a specimen role that is realized in the collection process.
 
     specimen role 1
-      inheres in: mouse 1
-      realized in: collection process 1
-
-    specimen role 2
+      type: specimen role
       inheres in: blood specimen 1
       realized in: collection process 1
 

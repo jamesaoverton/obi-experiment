@@ -19,6 +19,7 @@ UO:0000176	milligram per milliliter	Individual
 BFO:0000050	part of	ObjectProperty
 BFO:0000054	realized in	ObjectProperty
 OBI:0001931	scalar value specification	Class
+OBI:0000112	specimen role	Class
 OBI:0000422	syringe	Class
 OBI:0000422	test tube	Class
 rdf:type	type	ObjectProperty
