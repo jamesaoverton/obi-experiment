@@ -250,7 +250,7 @@ In the WHERE clause we use a SPARQL property chain to restrict the target to an 
     }
     WHERE {
       ?assay
-        type / subClassOf+ assay
+        type / subClassOf*: assay
         has evaluant: ?evaluant
     }
 
@@ -265,7 +265,7 @@ In the WHERE block we match assays that realize an evaluant role for some input,
     }
     WHERE {
       ?assay
-        type / subClassOf+ assay
+        type / subClassOf*: assay
         has specified input: ?evaluant
 
       ?evaluant-role
@@ -293,7 +293,7 @@ Expanding 'has measured value' seems similar...
     }
     WHERE {
       ?assay
-        type / subClassOf+ assay
+        type / subClassOf*: assay
         has measured value: ?value
     }
 
@@ -316,9 +316,108 @@ Now we run into some trouble. If an assay 'has measured unit' then its output is
     }
     WHERE {
       ?assay
-        type / subClassOf+ assay
+        type / subClassOf*: assay
         has measured unit: ?unit
     }
 
 We can work around the problem in this specific case, either with a combined query or by blocking the 'has measured value' expansion from matching the scalar value case. But it raises a general problem with interactions between the expansions and contractions. Interactions always add complexity.
+
+
+### Solutions
+
+One solution is to use different predicates when linking an assay to a plain value (without a unit) and a scalar value (with a unit). Other cases will have to be considered, including categorical measurements.
+
+Another solution to the specific problem is to use SPARQL MINUS to restrict the plain value query so that it fails to match the scalar value case. The order of the queries would not matter, but we still have to coordinate the two expansion queries when writing them.
+
+Expand for plain values, with `has measured value` but without (MINUS) `has measured unit`:
+
+    INSERT {
+      ?assay
+        has specified output: _:measurement-datum
+
+      _:measurement-datum
+        type: measurement datum
+        has value specification: _:value-specification
+
+      _:value-specification
+        type: value specification
+        has specified value: ?value
+    }
+    WHERE {
+      ?assay
+        type / subClassOf*: assay
+        has measured value: ?value
+
+      MINUS {
+        ?assay
+          has measured unit: ?unit
+      }
+    }
+
+Now expand for scalar values, including both `has measured value` and `has measured unit`:
+
+    INSERT {
+      ?assay
+        has specified output: _:measurement-datum
+
+      _:measurement-datum
+        type: measurement datum
+        has value specification: _:value-specification
+
+      _:value-specification
+        type: scalar value specification
+        has specified value: ?value
+        has measurement unit label: ?unit
+    }
+    WHERE {
+      ?assay
+        type / subClassOf*: assay
+        has measured value: ?value
+        has measured unit: ?unit
+    }
+
+Unfortunately, the use of the MINUS block means that the contraction of 'has measured value' is no longer a simple syntactic transformation of its expansion (another example of interactions adding complexity):
+
+    INSERT {
+      ?assay
+        type: assay
+        has measured value: ?value
+    }
+    WHERE {
+      ?assay
+        has specified output: _:measurement-datum
+
+      ?measurement-datum
+        type / subClassOf*: measurement datum
+        has value specification: ?value-specification
+
+      ?value-specification
+        type / subClassOf*: value specification
+        has specified value: ?value
+
+      MINUS {
+        ?value-specification
+          has measurement unit label: ?unit
+      }
+    }
+
+
+### Implementation
+
+The 'has measured unit' predicate could be included in the OBI OWL file as an Object Property:
+
+- domain: assay
+- range: measurement unit label
+- superPropertyOf (Chain): has specified output o has value specification o has measurement unit label
+
+If the expansion query is small, the contraction query can be automatically generated, and the order of the expansions/contractions does not matter, then it would be convenient to store the expansion query in the ontology an OWL Annotation Property. Otherwise, it would probably be better to store the queries in separate SPARQL files, with Annotation Property linking to the query files. The SPARQL files could be numbered to indicate the required sequence.
+
+
+## Notes
+
+Higher-Level Language: One of the goals of this approach is to provide two "languages" for working with OBI. The first is the low-level language using general relations that are shared with other OBO ontologies, thus promoting interoperability. The second is the high-level language using specialized relations that are specific to OBI, thus making it easier to use OBI for modelling and querying data. Ideally there would be a perfect translation (i.e. an isomorphism) between the two languages, allowing us to "round-trip" between them without losing information.
+
+First-Order Logic: We use SPARQL here to do things that cannot be done in OWL. We could probably use first-order logic (FOL) to express everything said in the SPARQL queries. Unfortunately we do not have good tool support for FOL. Still, it might be best to express the meaning of each shortcut relations in FOL fist, include it as an OWL annotation, and insist that the SPARQL queries are secondary to the FOL.
+
+Specialized Notation: Rather than writing SPARQL directly, we could develop a specialized notation for expressing expansion/contraction rules, and translate that to SPARQL. Another level of abstraction could add convenience, but also complexity.
 
