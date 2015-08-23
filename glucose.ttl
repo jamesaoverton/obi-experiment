@@ -61,7 +61,7 @@ x:specimen-role-1
   rdfs:label "specimen role 1" ;
   rdf:type OBI:0000112 ;
   RO:0000052 x:blood-specimen-1 ;
-  BFO:0000054 x:collection-process-1 .
+  BFO:0000054 x:analyte-assay-1 .
 
 x:analyte-assay-1
   rdfs:label "analyte assay 1" ;
