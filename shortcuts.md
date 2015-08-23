@@ -149,7 +149,7 @@ Likewise, we can expand the simple modelling into the second part of [glucose.md
         type: glucometer
 
       ?assay
-        type: analye assay
+        type: analyte assay
         has specified input: ?specimen
         has specified input: _:glucometer
         has specified output: _:measurement-datum
@@ -204,7 +204,7 @@ Likewise, we can expand the simple modelling into the second part of [glucose.md
         type: glucometer
 
       ?assay
-        type: analye assay
+        type: analyte assay
         has specified input: ?specimen
         has specified input: ?glucometer
         has specified output: ?measurement-datum
