@@ -56,7 +56,7 @@ The blood specimen has a specimen role that is realized in the subsequent assay.
 The assay process takes the blood specimen as input and creates a measurement datum as output.
 
     analyte assay 1
-      type: analye assay
+      type: analyte assay
       has specified input: blood specimen 1
       has specified input: glucometer 1
       has specified output: measurement datum 1
