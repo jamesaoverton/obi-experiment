@@ -29,7 +29,7 @@ Then we would have a table of assays and results.
 
 assay           | protocol   | evaluant         | result | unit
 ----------------|------------|------------------|--------|------
-analyte assay 1 | protocol 2 | blood specimen 1 | 1000   | mg/ml
+analyte assay 1 | protocol 2 | blood specimen 1 | 1.2    | mg/ml
 
 In both of these tables we would also include an investigator, timestamp, and other information.
 
@@ -51,7 +51,7 @@ A simple translation of these tables to linked data would look like this:
       type: assay
       executes protocol: protocol 2
       has evaluant: blood specimen 1
-      has measured value: 1000
+      has measured value: 1.2
       has measured unit: mg/ml
 
 This is a convenient "shape" to query with SPARQL, but a long way from the detailed modelling in [glucose.md](glucose.md).

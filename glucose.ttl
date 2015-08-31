@@ -90,6 +90,6 @@ x:measurement-datum-1
 x:value-specification-1
   rdfs:label "value specification 1" ;
   rdf:type OBI:0001931 ;
-  OBI:0001937 "100"^^xsd:real ;
+  OBI:0001937 "1.2"^^xsd:real ;
   IAO:0000039 UO:0000176 .
 
